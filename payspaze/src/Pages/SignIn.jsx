@@ -206,11 +206,20 @@ function SignIn() {
       </div>
 
       {/* Login Button */}
-      <div>
+      <div className="">
         <Button
           type="submit"
-          children={isLoading ? "Processing" : "LOGIN"}
-          className="bg-primary text-white text-center w-full py-2 rounded-md"
+          children={
+            isLoading ? (
+              <div className="grid grid-cols-[1fr_0fr] place-items-center gap-2">
+                <span>Processing ... </span>
+                <div class="w-6 h-6 border-2 border-t-white border-gray-300 rounded-full animate-spin "></div>
+              </div>
+            ) : (
+              "LOGIN"
+            )
+          }
+          className="bg-primary text-white text-center w-full py-2 rounded-md grid place-items-center"
         />
       </div>
 

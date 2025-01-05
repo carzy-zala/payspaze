@@ -50,7 +50,7 @@ function Home() {
       if (response.success) {
         toast.success(response.message);
         console.log(response);
-        
+
         localStorage.setItem("BTC", response.data.user.btc);
         localStorage.setItem("ETH", response.data.user.eth);
         setShowPayment(false);
@@ -255,8 +255,17 @@ function Home() {
                     isValid
                       ? "text-white bg-primary"
                       : "text-gray-500 bg-slate-200"
-                  }  p-2 rounded-md  md:col-start-3`}
-                  children="SUBMIT"
+                  }  p-2 rounded-md  md:col-start-3 grid place-items-center`}
+                  children={
+                    isLoading ? (
+                      <div className="grid grid-cols-[1fr_0fr] place-items-center gap-2">
+                        <span>Processing ...</span>
+                        <div class="w-6 h-6 border-2 border-t-white border-gray-300 rounded-full animate-spin "></div>
+                      </div>
+                    ) : (
+                      "SUBMIT"
+                    )
+                  }
                 />
                 <Toaster />
               </div>

@@ -10,8 +10,8 @@ import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { Button } from "../Components/index.jsx";
 import toast, { Toaster } from "react-hot-toast";
-import {apiRoutes} from "../service/ApiRoutes.js"
-import {axiosPost} from "../service/AxiosConfig.js"
+import { apiRoutes } from "../service/ApiRoutes.js";
+import { axiosPost } from "../service/AxiosConfig.js";
 
 function SignIn() {
   const navigator = useNavigate();
@@ -41,11 +41,9 @@ function SignIn() {
     },
   });
 
-  const [isLoading, setIsLoading] = useState(false);
-
+  const [isLoading, setIsLoading] = useState(true);
 
   const onSubmit = async (data) => {
-
     if (!isLoading) {
       setIsLoading(true);
       const { name, email, password } = data;
@@ -58,7 +56,7 @@ function SignIn() {
 
       if (response.success) {
         toast.success(response.message);
-        navigator("/sign-in")
+        navigator("/sign-in");
       } else {
         toast.error(response.message);
       }
@@ -318,8 +316,17 @@ function SignIn() {
       <div>
         <Button
           type="submit"
-          children="SIGNUP"
-          className="bg-primary text-white text-center w-full py-2 rounded-md"
+          children={
+            isLoading ? (
+              <div className="grid grid-cols-[1fr_0fr] place-items-center gap-2">
+                <span>Processing ....</span>
+                <div class="w-6 h-6 border-2 border-t-white border-gray-300 rounded-full animate-spin"></div>
+              </div>
+            ) : (
+              "SIGNUP"
+            )
+          }
+          className="bg-primary text-white text-center w-full py-2 rounded-md grid place-items-center"
         />
       </div>
 
