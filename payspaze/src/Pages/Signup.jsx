@@ -58,7 +58,7 @@ function SignIn() {
 
       if (response.success) {
         toast.success(response.message);
-        navigator("/login")
+        navigator("/sign-in")
       } else {
         toast.error(response.message);
       }
